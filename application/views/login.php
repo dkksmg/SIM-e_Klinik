@@ -183,9 +183,12 @@
   })
   <?php
     $alert = $this->session->flashdata('alert');
-    if ($alert != '') {
-      $alert = json_decode($alert);
-      echo "Swal.fire({icon: '" . $alert[0] . "',title: '" . $alert[1] . "',showConfirmButton: false,timer: 8000})";
+
+    if (isset($alert)) {
+      if ($alert != '') {
+        $alert = json_decode($alert);
+        echo "Swal.fire({icon: '" . $alert[0] . "',title: '" . $alert[1] . "',showConfirmButton: false,timer: 8000})";
+      }
     }
     ?>
   </script>

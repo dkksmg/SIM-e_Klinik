@@ -74,12 +74,7 @@ function check_session()
 	} else if ($session == null) {
 		$ci->session->set_flashdata(
 			'alert',
-			'<div class="alert alert-danger alert-dismissible fade show">
-		Silahkan Sign In terlebih dahulu !
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>'
+			'["warning","Yuk Login dulu"]'
 		);
 	} else {
 		redirect('login');
