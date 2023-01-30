@@ -100,7 +100,7 @@ class Kunjungan_m extends CI_Model
 	}
 
 
-	// LAPORAN LAPORAN
+	// LAPORAN
 	public function totalKunjungan($tahun = null, $bulan = null)
 	{
 		$this->db->where('klinik', $this->session->userdata('klinik'));
