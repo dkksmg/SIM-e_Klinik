@@ -72,10 +72,10 @@ function check_session()
 	if ($session == 'login') {
 		redirect('dashboard', 'refresh');
 	} else if ($session == null) {
-		$ci->session->set_flashdata(
-			'alert',
-			'["warning","Yuk Login dulu"]'
-		);
+		// $ci->session->set_flashdata(
+		// 	'alert',
+		// 	'["warning","Yuk Login dulu"]'
+		// );
 	} else {
 		redirect('login');
 	}

@@ -11,7 +11,7 @@ class Klinik extends CI_Controller
     } else if ($this->session->userdata('role') == 'user') {
       show_404();
     }
-    $this->load->model(['user_m']);
+    $this->load->model(['user_m', 'klinik_m']);
     //$this->output->enable_profiler(TRUE);
   }
   public function index()
@@ -146,5 +146,32 @@ class Klinik extends CI_Controller
     }
     return $valid;
     //return TRUE;
+  }
+  public function keaktifan()
+  {
+    // $this->load->helper(array('form', 'url'));
+    $data['klinik'] = $this->klinik_m->all();
+    // print_r($data);
+    // die();
+    $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
+    $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+    if ($this->input->get()) {
+      $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
+      $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+      $kode = $this->input->get('kode');
+      $tahun = $this->input->get('tahun');
+      $data['kunjungan'] = $this->klinik_m->dataKunjungan($kode, $tahun);
+      $data['pasien'] = $this->klinik_m->dataPasien($kode, $tahun);
+      $data['nama'] = $this->klinik_m->nama($kode);
+      $data['tahun'] = $tahun;
+    }
+
+    // print_r($data);
+    // $this->template->_setJs("users_klinik.js");
+    // $this->template->_setJsPlugins("datatables/jquery.dataTables.js");
+    // $this->template->_setJsPlugins("datatables-bs4/js/dataTables.bootstrap4.min.js");
+    // $this->template->_setCssPlugins("datatables-bs4/css/dataTables.bootstrap4.min.css");
+    // print_r($data);
+    $this->template->display('admin/keaktifan', $data);
   }
 }

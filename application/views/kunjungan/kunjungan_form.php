@@ -44,6 +44,8 @@
         <hr>
         <div class="card-body">
           <form method="post">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
+              value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
             <div class="form-group row">
               <label class="col-form-label col-md-2">Pasien</label>
               <?php if ($terakhir) { ?>

@@ -92,8 +92,7 @@
           </li>
         </ul>
       </li>
-      <li
-        class="nav-item has-treeview <?= $this->uri->segment(1) == 'laporan' ? 'menu-open' : '' || $this->uri->segment(1) == 'kunjungan' ? 'menu-open' : '' ?>"">
+      <li class="nav-item has-treeview <?= $this->uri->segment(1) == 'laporan' ? 'menu-open' : '' ?>"">
           <a href=" #"
         class="nav-link <?= $this->uri->segment(1) == 'laporan' ? 'active' : '' || $this->uri->segment(1) == 'kunjungan' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-newspaper"></i>
@@ -115,7 +114,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= site_url('kunjungan/cari') ?>" class="nav-link">
+            <a href="<?= site_url('laporan/kunjungan') ?>" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Laporan Kunjungan </p>
             </a>
@@ -124,9 +123,9 @@
       </li>
       <?php if ($this->session->userdata('role') == 'admin') : ?>
       <li
-        class="nav-item has-treeview <?= $this->uri->segment(1) == 'laporan' ? 'menu-open' : '' || $this->uri->segment(1) == 'kunjungan' ? 'menu-open' : '' ?>"">
+        class="nav-item has-treeview <?= $this->uri->segment(1) == 'admin' ? 'menu-open' : '' || $this->uri->segment(1) == 'admin' ? 'menu-open' : '' ?>"">
           <a href=" #"
-        class="nav-link <?= $this->uri->segment(1) == 'laporan' ? 'active' : '' || $this->uri->segment(1) == 'kunjungan' ? 'active' : '' ?>">
+        class="nav-link <?= $this->uri->segment(3) == 'users' ? 'active' : '' || $this->uri->segment(3) == 'keaktifan' ? 'active' : '' ?>">
         <i class="nav-icon fas fa-newspaper"></i>
         <p>Data Klinik
           <i class="right fas fa-angle-left"></i>
@@ -134,21 +133,17 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="<?= site_url('admin/klinik/data') ?>" class="nav-link">
+            <a href="<?= site_url('admin/klinik/keaktifan') ?>"
+              class="nav-link <?= $this->uri->segment(3) == 'keaktifan' ? 'active' : '' ?>">
               <i class="far fa-circle nav-icon"></i>
               <p>Keaktifan</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= site_url('admin/klinik/users') ?>" class="nav-link">
+            <a href="<?= site_url('admin/klinik/users') ?>"
+              class="nav-link <?= $this->uri->segment(3) == 'users' ? 'active' : '' ?>">
               <i class="far fa-circle nav-icon"></i>
               <p>Users</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= site_url('kunjungan/cari') ?>" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Laporan Kunjungan </p>
             </a>
           </li>
         </ul>

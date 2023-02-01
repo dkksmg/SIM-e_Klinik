@@ -9,7 +9,7 @@ class Laporan extends CI_Controller
     if ($this->session->userdata('klinik') == '') {
       redirect('Login', 'refresh');
     }
-    $this->load->model(['laporan_m',]);
+    $this->load->model(['laporan_m', 'klinik_m']);
     //$this->output->enable_profiler(TRUE);
   }
   public function laporan_penyakit($data = null)
@@ -152,6 +152,19 @@ class Laporan extends CI_Controller
   }
   public function kunjungan()
   {
-    echo 'kunjungan';
+    $data = null;
+    $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
+    $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+    if ($this->input->get()) {
+      $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
+      $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+      $kode = $this->session->userdata('klinik');
+      $tahun = $this->input->get('tahun');
+      $data['kunjungan'] = $this->klinik_m->dataKunjungan($kode, $tahun);
+      $data['pasien'] = $this->klinik_m->dataPasien($kode, $tahun);
+      $data['nama'] = $this->klinik_m->nama($kode);
+      $data['tahun'] = $tahun;
+    }
+    $this->template->display('laporan/kunjungan_klinik', $data);
   }
 }
