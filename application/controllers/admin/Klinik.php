@@ -153,18 +153,34 @@ class Klinik extends CI_Controller
     $data['klinik'] = $this->klinik_m->all();
     // print_r($data);
     // die();
-    $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
-    $this->form_validation->set_rules('tahun', 'Tahun', 'required');
+    // $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
+    // $this->form_validation->set_rules('tahun', 'Tahun', 'required');
     if ($this->input->get()) {
       $this->form_validation->set_rules('kode', 'Kode Klinik', 'required');
       $this->form_validation->set_rules('tahun', 'Tahun', 'required');
       $kode = $this->input->get('kode');
       $tahun = $this->input->get('tahun');
-      $data['kunjungan'] = $this->klinik_m->dataKunjungan($kode, $tahun);
-      $data['pasien'] = $this->klinik_m->dataPasien($kode, $tahun);
-      $data['nama'] = $this->klinik_m->nama($kode);
+      if ($kode == 'all') {
+        foreach ($data['klinik'] as $kl) {
+          $data['kunjungan'][] = $this->klinik_m->dataKunjungan($kl['klinik'], $tahun);
+          $data['pasien'][] = $this->klinik_m->dataPasien($kl['klinik'], $tahun);
+        }
+        $data['all'] = array();
+        foreach ($data['klinik'] as $k => $v) {
+          $data['all'][$k] = array_merge($data['klinik'][$k], array('kunjungan' => $data['kunjungan'][$k], 'pasien' => $data['pasien'][$k]));
+        }
+      } else {
+        $data['kunjungan'] = $this->klinik_m->dataKunjungan($kode, $tahun);
+        $data['pasien'] = $this->klinik_m->dataPasien($kode, $tahun);
+        $data['nama'] = $this->klinik_m->nama($kode);
+      }
+      $data['kode'] = $kode;
       $data['tahun'] = $tahun;
+
+      // print_r($data);
+      // die();
     }
+    // $data['kode'] = 'all';
 
     // print_r($data);
     // $this->template->_setJs("users_klinik.js");
@@ -172,6 +188,7 @@ class Klinik extends CI_Controller
     // $this->template->_setJsPlugins("datatables-bs4/js/dataTables.bootstrap4.min.js");
     // $this->template->_setCssPlugins("datatables-bs4/css/dataTables.bootstrap4.min.css");
     // print_r($data);
+    // die();
     $this->template->display('admin/keaktifan', $data);
   }
 }

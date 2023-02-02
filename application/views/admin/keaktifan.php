@@ -13,9 +13,10 @@
                 <div class="form-group row">
                   <label class="col-form-label col-md-2">Klinik</label>
                   <div class="col-md-4">
-                    <select name="kode" id="kodeKlinik" class="form-control">
-                      <?php if ($klinik) : ?>
+                    <select name="kode" id="kodeKlinik" class="form-control" required autofocus>
                       <option value="">-Pilih-</option>
+                      <?php if ($klinik) : ?>
+                      <option value="all">Semua</option>
                       <?php foreach ($klinik as $kl) : ?>
                       <option value='<?= $kl['klinik'] ?>' <?= $kl['klinik'] == set_value('kode') ? 'selected' : '' ?>>
                         <?= $kl['nama'] ?></option>
@@ -29,7 +30,7 @@
                   <label class="col-form-label col-md-2">Tahun</label>
                   <div class="col-md-4">
                     <?php
-                    $year_start  = 2018;
+                    $year_start  = 2020;
                     $year_end = date('Y') + 1; // current Year
                     $user_selected_year = date('Y');
 
@@ -50,8 +51,119 @@
           </form>
         </div>
         <hr>
-        <?php if (isset($kunjungan) && isset($pasien)) : ?>
-
+        <?php if ($kode == 'all') : ?>
+        <div class="card-header">
+          <h3 class="card-title"><strong>Laporan Keaktifan Semua Klinik <?= ' tahun ' . $tahun; ?></strong></h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 150px;">Klinik</th>
+                <th class="text-center">Kode Klinik</th>
+                <th class="text-center">Jenis Laporan</th>
+                <th class="text-center">Januari</th>
+                <th class="text-center">Februari</th>
+                <th class="text-center">Maret</th>
+                <th class="text-center">April</th>
+                <th class="text-center">Mei</th>
+                <th class="text-center">Juni</th>
+                <th class="text-center">Juli</th>
+                <th class="text-center">Agustus</th>
+                <th class="text-center">September</th>
+                <th class="text-center">Oktober</th>
+                <th class="text-center">November</th>
+                <th class="text-center">Desember</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($all as $klinik) : ?>
+              <tr>
+                <td rowspan="2" class="text-center" style="vertical-align : middle;text-align:center;">
+                  <?= $klinik['nama']; ?></td>
+                <td rowspan="2" class="text-center" style="vertical-align : middle;text-align:center;">
+                  <?= $klinik['klinik']; ?></td>
+                <td class="text-center">Kunjungan</td>
+                <td class="text-center">
+                  <?php echo array_key_exists('january', $klinik['kunjungan']) ? $klinik['kunjungan']['january'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('february', $klinik['kunjungan']) ? $klinik['kunjungan']['february'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('march', $klinik['kunjungan']) ? $klinik['kunjungan']['march'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('april', $klinik['kunjungan']) ? $klinik['kunjungan']['april'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('may', $klinik['kunjungan']) ? $klinik['kunjungan']['may'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('june', $klinik['kunjungan']) ? $klinik['kunjungan']['june'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('july', $klinik['kunjungan']) ? $klinik['kunjungan']['july'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('august', $klinik['kunjungan']) ? $klinik['kunjungan']['august'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('september', $klinik['kunjungan']) ? $klinik['kunjungan']['september'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('october', $klinik['kunjungan']) ? $klinik['kunjungan']['october'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('november', $klinik['kunjungan']) ? $klinik['kunjungan']['november'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('december', $klinik['kunjungan']) ? $klinik['kunjungan']['december'] : '-'; ?>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">Pasien</td>
+                <td class="text-center">
+                  <?php echo array_key_exists('january', $klinik['pasien']) ? $klinik['pasien']['january'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('february', $klinik['pasien']) ? $klinik['pasien']['february'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('march', $klinik['pasien']) ? $klinik['pasien']['march'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('april', $klinik['pasien']) ? $klinik['pasien']['april'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('may', $klinik['pasien']) ? $klinik['pasien']['may'] : '-'; ?></td>
+                <td class="text-center">
+                  <?php echo array_key_exists('june', $klinik['pasien']) ? $klinik['pasien']['june'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('july', $klinik['pasien']) ? $klinik['pasien']['july'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('august', $klinik['pasien']) ? $klinik['pasien']['august'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('september', $klinik['pasien']) ? $klinik['pasien']['september'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('october', $klinik['pasien']) ? $klinik['pasien']['october'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('november', $klinik['pasien']) ? $klinik['pasien']['november'] : '-'; ?>
+                </td>
+                <td class="text-center">
+                  <?php echo array_key_exists('december', $klinik['pasien']) ? $klinik['pasien']['december'] : '-'; ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+        <?php else : ?>
         <div class="card-header">
           <h3 class="card-title"><strong>Laporan Keaktifan <?= $nama . ' tahun ' . $tahun; ?></strong></h3>
         </div>
@@ -83,15 +195,20 @@
                 <td class="text-center">
                   <?php echo array_key_exists('february', $kunjungan) ? $kunjungan['february'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('march', $kunjungan) ? $kunjungan['march'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('march', $kunjungan) ? $kunjungan['march'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('april', $kunjungan) ? $kunjungan['april'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('april', $kunjungan) ? $kunjungan['april'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('may', $kunjungan) ? $kunjungan['may'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('may', $kunjungan) ? $kunjungan['may'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('june', $kunjungan) ? $kunjungan['june'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('june', $kunjungan) ? $kunjungan['june'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('july', $kunjungan) ? $kunjungan['july'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('july', $kunjungan) ? $kunjungan['july'] : '-'; ?>
                 </td>
                 <td class="text-center">
                   <?php echo array_key_exists('august', $kunjungan) ? $kunjungan['august'] : '-'; ?>
@@ -117,14 +234,19 @@
                 <td class="text-center">
                   <?php echo array_key_exists('february', $pasien) ? $pasien['february'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('march', $pasien) ? $pasien['march'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('march', $pasien) ? $pasien['march'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('april', $pasien) ? $pasien['april'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('april', $pasien) ? $pasien['april'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('may', $pasien) ? $pasien['may'] : '-'; ?></td>
-                <td class="text-center"><?php echo array_key_exists('june', $pasien) ? $pasien['june'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('may', $pasien) ? $pasien['may'] : '-'; ?></td>
+                <td class="text-center">
+                  <?php echo array_key_exists('june', $pasien) ? $pasien['june'] : '-'; ?>
                 </td>
-                <td class="text-center"><?php echo array_key_exists('july', $pasien) ? $pasien['july'] : '-'; ?>
+                <td class="text-center">
+                  <?php echo array_key_exists('july', $pasien) ? $pasien['july'] : '-'; ?>
                 </td>
                 <td class="text-center">
                   <?php echo array_key_exists('august', $pasien) ? $pasien['august'] : '-'; ?>
@@ -146,7 +268,6 @@
           </table>
         </div>
         <?php endif ?>
-
       </div>
     </div>
   </div> <!-- /.row -->
