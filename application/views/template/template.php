@@ -83,6 +83,8 @@
   <link rel="stylesheet" type="text/css"
     href="<?= base_url('asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.css') ?>">
   <script src="<?= base_url('asset/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+  <script type="text/javascript"
+    src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>
   <script>
   // $(document).ready(function() {
   //   $.ajaxSetup({

@@ -88,6 +88,13 @@ class User_m extends CI_Model
 			return $query->result_array();
 		}
 	}
+	public function klinik_all()
+	{
+		$query = $this->db->get($this->table);
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		}
+	}
 }
 
 /* End of file user_m.php */

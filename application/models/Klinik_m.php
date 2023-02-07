@@ -55,6 +55,17 @@ class Klinik_m extends CI_Model
 		// 	return $q->result_array();
 		// }
 	}
+	public function klinik_detail($kode)
+	{
+		$this->db->select('*');
+		$this->db->join('klinik as kl', 'tbu.klinik=kl.kode_klinik', 'left');
+		$this->db->where('tbu.klinik', $kode);
+		$this->db->order_by('tbu.nama', 'asc');
+		$q = $this->db->get('tb_user as tbu');
+		if ($q->num_rows() > 0) {
+			return $q->result_array()[0];
+		}
+	}
 
 	public function dataKunjungan($klinik = null, $tahun = null)
 	{
@@ -88,11 +99,13 @@ class Klinik_m extends CI_Model
 	}
 	public function all()
 	{
-		$this->db->select(array('klinik', 'nama'));
-		$this->db->where('status', 1);
-		$this->db->where('role', 'user');
-		$this->db->order_by('nama', 'asc');
-		$query = $this->db->get('tb_user');
+		$this->db->select(array('tbu.klinik', 'tbu.nama', 'kl.nama', 'kl.alamat', 'kl.pj', 'kl.telp'));
+		// $this->db->select('*');
+		$this->db->join('klinik as kl', 'tbu.klinik=kl.kode_klinik', 'left');
+		$this->db->where('tbu.status', 1);
+		$this->db->where('tbu.role', 'user');
+		$this->db->order_by('tbu.nama', 'asc');
+		$query = $this->db->get('tb_user as tbu');
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $row) {
 				$hasil[] = $row;
