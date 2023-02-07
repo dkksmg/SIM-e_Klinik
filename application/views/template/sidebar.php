@@ -172,8 +172,13 @@
       <li class="nav-item">
         <a href="<?= site_url('ketentuan') ?>"
           class="nav-link <?= $this->uri->segment(1) == 'ketentuan' ? 'active' : ''; ?>">
-          <!-- <i class="fas fa-tachometer-alt nav-icon"></i> -->
           <p>Syarat & Ketentuan Penggunaan</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="<?= site_url('penggunaan') ?>"
+          class="nav-link <?= $this->uri->segment(1) == 'penggunaan' ? 'active' : ''; ?>">
+          <p>Tata Cara Penggunaan</p>
         </a>
       </li>
     </ul>
