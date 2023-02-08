@@ -52,7 +52,7 @@ class Pasien extends CI_Controller
 					$edit = $this->pasien_m->edit();
 					if ($edit) {
 						$this->session->set_flashdata('alert', '["success","Edit Pasien berhasil"]');
-						redirect('pasien/detail?noCm=' . $edit, 'refresh');
+						redirect('pasien/edit?noCm=' . $edit, 'refresh');
 					} else {
 						$this->session->set_flashdata('alert', '["warning","Edit Pasien Gagal"]');
 					}

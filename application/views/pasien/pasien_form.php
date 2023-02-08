@@ -8,21 +8,18 @@
         </div>
         <div class="card-body">
           <form method="post">
-            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>"
-              value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
             <table class="table">
               <tr>
                 <th>No CM</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="noCm" placeholder="Nomor CM" name="noCm"
-                    value="<?= isset($pasien) ? $pasien['noCm'] : "" ?>">
+                  <input type="text" class="form-control" id="noCm" placeholder="Nomor CM" name="noCm" value="<?= isset($pasien) ? $pasien['noCm'] : "" ?>">
                 </td>
                 <th>NIK</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="nik" placeholder="NIK" name="nik"
-                    value="<?= isset($pasien) ? $pasien['nik'] : '' ?>">
+                  <input type="text" class="form-control" id="nik" placeholder="NIK" name="nik" value="<?= isset($pasien) ? $pasien['nik'] : '' ?>">
                 </td>
               </tr>
               <tr>
@@ -31,8 +28,7 @@
                 <td>
                   <select name="asuransi" class="form-control">
                     <option value="">Tidak Ada</option>
-                    <option value="BPJS"
-                      <?= isset($pasien['asuransi']) && $pasien['asuransi'] == 'BPJS' ? 'selected' : ''; ?>>
+                    <option value="BPJS" <?= isset($pasien['asuransi']) && $pasien['asuransi'] == 'BPJS' ? 'selected' : ''; ?>>
                       BPJS</option>
                     <?php if (isset($asuransi)) {
                       foreach ($asuransi as $key => $value) {
@@ -48,30 +44,26 @@
                 <th>No Asuransi</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="noAsuransi" placeholder="Nomor Asuransi" name="noAsuransi"
-                    value="<?= isset($pasien) ? $pasien['noAsuransi'] : '' ?>">
+                  <input type="text" class="form-control" id="noAsuransi" placeholder="Nomor Asuransi" name="noAsuransi" value="<?= isset($pasien) ? $pasien['noAsuransi'] : '' ?>">
                 </td>
               </tr>
               <tr>
                 <th>Nama</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="nama" placeholder="Nama" name="nama"
-                    value="<?= isset($pasien) ? $pasien['nama'] : '' ?>">
+                  <input type="text" class="form-control" id="nama" placeholder="Nama" name="nama" value="<?= isset($pasien) ? $pasien['nama'] : '' ?>">
                 </td>
                 <th>Kepala Keluarga</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="kk" placeholder="Nama KK" name="kk"
-                    value="<?= isset($pasien) ? $pasien['kk'] : '' ?>">
+                  <input type="text" class="form-control" id="kk" placeholder="Nama KK" name="kk" value="<?= isset($pasien) ? $pasien['kk'] : '' ?>">
                 </td>
               </tr>
               <tr>
                 <th>Telephone</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="hp" placeholder="No Telp" name="hp"
-                    value="<?= isset($pasien) ? $pasien['hp'] : '' ?>">
+                  <input type="text" class="form-control" id="hp" placeholder="No Telp" name="hp" value="<?= isset($pasien) ? $pasien['hp'] : '' ?>">
                 </td>
                 <th>Jenis Kelamin</th>
                 <td>:</td>
@@ -91,23 +83,19 @@
                 <th>Tempat Lahir</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir" name="tempatLahir"
-                    value="<?= isset($pasien) ? $pasien['tempatLahir'] : '' ?>">
+                  <input type="text" class="form-control" id="tempatLahir" placeholder="Tempat Lahir" name="tempatLahir" value="<?= isset($pasien) ? $pasien['tempatLahir'] : '' ?>">
                 </td>
                 <th>Tanggal Lahir</th>
                 <td>:</td>
                 <td>
-                  <input type="text" class="form-control" data-inputmask-alias="datetime"
-                    data-inputmask-inputformat="dd-mm-yyyy" id="tglLahir" name="tglLahir"
-                    value="<?= isset($pasien) && $pasien['tglLahir'] != '' ? date("d-m-Y", strtotime($pasien['tglLahir'])) : '' ?>">
+                  <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd-mm-yyyy" id="tglLahir" name="tglLahir" value="<?= isset($pasien) && $pasien['tglLahir'] != '' ? date("d-m-Y", strtotime($pasien['tglLahir'])) : '' ?>">
                 </td>
               </tr>
               <tr>
                 <th>Provinsi</th>
                 <td>:</td>
                 <td>
-                  <select name="provinsi" class="form-control" id="provinsi"
-                    onchange="updateWilayah('kota','provinsi',this.value)">
+                  <select name="provinsi" class="form-control" id="provinsi" onchange="updateWilayah('kota','provinsi',this.value)">
                     <option value="" disabled>--Pilih Provinsi--</option>
                     <?php if (isset($provinsi)) {
                       foreach ($provinsi as $key => $value) {
@@ -127,8 +115,7 @@
                 <th>Kota</th>
                 <td>:</td>
                 <td>
-                  <select name="kota" class="form-control" id="kota"
-                    onchange="updateWilayah('kecamatan','kota',this.value)">
+                  <select name="kota" class="form-control" id="kota" onchange="updateWilayah('kecamatan','kota',this.value)">
                     <option value="" disabled>--Pilih Kota--</option>
                     <?php if (isset($pasien)) {
                       echo "<option value='" . $pasien['kota'] . "' selected>" . kota($pasien['kota']) . "</option>";
@@ -152,8 +139,7 @@
                 <th>Kecamatan</th>
                 <td>:</td>
                 <td>
-                  <select name="kecamatan" class="form-control" id="kecamatan"
-                    onchange="updateWilayah('kelurahan','kecamatan',this.value)">
+                  <select name="kecamatan" class="form-control" id="kecamatan" onchange="updateWilayah('kelurahan','kecamatan',this.value)">
                     <option value="" disabled>--Pilih Kecamatan--</option>
                     <?php if (isset($pasien)) {
                       echo "<option value='" . $pasien['kecamatan'] . "' selected>" . kecamatan($pasien['kecamatan']) . "</option>";
@@ -175,13 +161,13 @@
                 <th>Alamat</th>
                 <td>:</td>
                 <td>
-                  <textarea class="form-control" name="alamat"
-                    placeholder="Alamat"><?= isset($pasien) ? $pasien['alamat'] : '' ?></textarea>
+                  <textarea class="form-control" name="alamat" placeholder="Alamat"><?= isset($pasien) ? $pasien['alamat'] : '' ?></textarea>
                 </td>
                 <th></th>
                 <td></td>
                 <td>
                   <input type="submit" value="Simpan" class="btn btn-success">
+                  <button type="button" class="btn btn-warning" onclick="window.location.href='<?= base_url('pasien') ?>'">Kembali</button>
                 </td>
               </tr>
             </table>

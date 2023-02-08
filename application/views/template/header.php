@@ -26,8 +26,10 @@
         <li class="user-body">
           <div class="row">
             <div class="col-md-6 text-center">
-              <a href="<?= site_url('auth/logout') ?>" class="btn btn-danger"
-                style="background-color: #dc3545 !important; color: #fff !important;">Sign out</a>
+              <a href="<?= site_url('profile') ?>" class="btn btn-info" style="background-color: #3B71CA !important; color: #fff !important;">Profile</a>
+            </div>
+            <div class="col-md-6 text-center">
+              <a href="<?= site_url('auth/logout') ?>" class="btn btn-danger" style="background-color: #dc3545 !important; color: #fff !important;">Sign out</a>
             </div>
           </div>
           <!-- /.row -->

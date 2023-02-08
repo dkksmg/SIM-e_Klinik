@@ -147,8 +147,7 @@ class Laporan extends CI_Controller
   public function kesakitan_umum()
   {
     echo 'Mohon maaf halaman ini sedang dalam pengembangan';
-
-    $this->output->set_header('refresh:8;url=' . base_url('dashboard') . '');
+    $this->output->set_header('refresh:3; url=' . base_url());
   }
   public function kunjungan()
   {
