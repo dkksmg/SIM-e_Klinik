@@ -330,7 +330,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'b{{h#/Ib;pd<%+H0?ujvv9KLRc0LR-o8ot"K*so.J&}4\qCQ+Ij81ih\d48fx5_';
+$config['encryption_key'] = 'crypt_data_hehe2023';
 
 /*
 |--------------------------------------------------------------------------

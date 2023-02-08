@@ -88,11 +88,32 @@ class User_m extends CI_Model
 			return $query->result_array();
 		}
 	}
+	public function user($kode = null)
+	{
+		$this->db->where('klinik', $kode);
+		$query = $this->db->get($this->table);
+		if ($query->num_rows() > 0) {
+			return $query->row_array();
+		}
+	}
 	public function klinik_all()
 	{
 		$query = $this->db->get($this->table);
 		if ($query->num_rows() > 0) {
 			return $query->result_array();
+		}
+	}
+	public function editProfile($klinik, $old)
+	{
+
+		$data['nama'] = $this->input->post('nama');
+		$data['username'] = $this->input->post('username');
+		$data['password'] = !empty($this->input->post('password')) ? md5($this->input->post('password')) :  $old;
+		$data['update_at'] = date("Y-m-d H:i:s");
+		$this->db->where('klinik', $klinik);
+		$query = $this->db->update($this->table, $data);
+		if ($query) {
+			return $data['klinik'];
 		}
 	}
 }

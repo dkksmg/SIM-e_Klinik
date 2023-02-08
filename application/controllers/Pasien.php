@@ -49,7 +49,8 @@ class Pasien extends CI_Controller
 						$this->session->set_flashdata('alert', '["warning","Tambah Pasien Gagal"]');
 					}
 				} else {
-					$edit = $this->pasien_m->edit();
+					// $id = (decrypt_url($this->input->post('kode')));
+					$edit = $this->pasien_m->edit(decrypt_url($this->input->post('kode')));
 					if ($edit) {
 						$this->session->set_flashdata('alert', '["success","Edit Pasien berhasil"]');
 						redirect('pasien/edit?noCm=' . $edit, 'refresh');

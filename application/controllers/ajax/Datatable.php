@@ -4,9 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Datatable extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        if ($this->session->userdata('klinik') == '') {
+            redirect('Login', 'refresh');
+        }
+    }
     public function index()
     {
-        echo "index";
+        redirect(base_url());
     }
     public function pasien()
     {
