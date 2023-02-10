@@ -41,9 +41,9 @@ class Pasien extends CI_Controller
 		if ($this->input->post()) {
 			if ($this->validate()) {
 				if ($jenis != 'edit') {
-					print_r($this->input->post());
-					die();
 					$tambah = $this->pasien_m->tambah();
+					print_r($this->db->last_query());
+					die();
 					if ($tambah) {
 						$this->session->set_flashdata('alert', '["success","Tambah Pasien Berhasil"]');
 						redirect('kunjungan/catat?noCm=' . $tambah, 'refresh');
