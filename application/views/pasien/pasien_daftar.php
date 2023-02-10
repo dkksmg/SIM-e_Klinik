@@ -8,7 +8,8 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered datatable" id="pasien">
+            <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+            <table class="table table-bordered datatable" id="pasien" style="width: 100%;height:auto;">
               <thead>
                 <tr>
                   <th>No CM</th>

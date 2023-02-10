@@ -19,6 +19,8 @@ class Datatable extends CI_Controller
     {
         $this->load->model('datatable_pasien', 'datatable');
         $list = $this->datatable->get_datatables();
+        $csrfName = $this->security->get_csrf_token_name();
+        $csrfHash = $this->security->get_csrf_hash();
         $data = array();
         foreach ($list as $pasien) {
             $row = array();
@@ -40,6 +42,7 @@ class Datatable extends CI_Controller
             "recordsFiltered" => $this->datatable->count_filtered(),
             "data" => $data,
         );
+        $output[$csrfName] = $csrfHash;
         //output to json format
         echo json_encode($output);
     }
